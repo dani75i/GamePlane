@@ -1,0 +1,4 @@
+# Constantes
+SIZE_FENETRE_X = 1200
+SIZE_FENETRE_Y = 700
+TIME_GAME = 50000  # temps en ms
