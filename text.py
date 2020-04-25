@@ -4,7 +4,8 @@ from constantes import *
 messages = {
     "begin": "TAPE SUR S",
     "win": "YOU WIN",
-    "lose": "GAME OVER !"
+    "lose": "GAME OVER !",
+    "reolad": "Pour relancer tape sur r "
 }
 
 colors = {
@@ -18,6 +19,7 @@ positions = {
     "topleft": (20, 40),
     "toplright": (SIZE_FENETRE_X - 100, 40),
     "center": (SIZE_FENETRE_X // 2 - 150, SIZE_FENETRE_Y // 2 - 100),
+    "bottomcenter": (SIZE_FENETRE_X // 2 - 230, SIZE_FENETRE_Y // 2 + 50),
     "topcenter": (SIZE_FENETRE_X // 2 - 150, 50),
 }
 
