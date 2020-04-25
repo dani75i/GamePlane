@@ -10,9 +10,10 @@ messages = {
 
 colors = {
     "green": (0, 255, 0),
+    "red": (255, 0, 0),
     "blue": (0, 0, 128),
     "white": (255, 255, 255),
-    "black": (0, 0, 0)
+    "black": (0, 0, 0),
 }
 
 positions = {
@@ -27,18 +28,27 @@ positions = {
 class Text:
 
     def __init__(self, message=None, position=positions["topleft"]):
-        self.font = pygame.font.Font('freesansbold.ttf', 30)
+        self.font_size = 30
+        self.font = pygame.font.Font('freesansbold.ttf', self.font_size)
         self.position = position
         self.message = message
-        self.text = self.font.render(self.message, True, colors["green"], None)
+        self.color = colors["black"]
+        self.text = self.font.render(self.message, True, self.color, None)
         self.textRect = self.text.get_rect()
         self.textRect.center = self.position
 
     def display_message(self, message):
         self.message = message
-        self.text = self.font.render(self.message, True, colors["black"], None)
+        self.text = self.font.render(self.message, True, self.color, None)
         return self.text
 
     def set_position_message(self, position):
         self.position = position
         return self.position
+
+    def update_color(self, color):
+        self.color = color
+
+    def update_font_size(self, font_size):
+        self.font_size = font_size
+        return self.font_size
