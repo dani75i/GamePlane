@@ -37,13 +37,17 @@ player = Player()
 time_elapsed_since_last_action = TIME_GAME
 clock = pygame.time.Clock()
 
+
 # Fonction pour générer des ennemies
 def generate_ennemies(number_ennemies):
     for i in range(number_ennemies):
         enemy = Enemy()
         list_ennemies.append(enemy)
 
+
 while continuer:
+
+    BLUE = (0, 0, 255)
 
     if reload:
         TIME_GAME = 50000  # temps en ms
@@ -74,7 +78,6 @@ while continuer:
         # Intanciation Timer
         time_elapsed_since_last_action = TIME_GAME
         clock = pygame.time.Clock()
-
 
     # Afficher et animer le background
     x -= 2
@@ -120,6 +123,7 @@ while continuer:
         # Afficher le joueur
         if displayplayer:
             fenetre.blit(player.image, (player.rect.x, player.rect.y))
+            pygame.draw.rect(fenetre, colors["green"], (player.rect.x, player.rect.y - 20, player.health, 10))
 
             # Compte à rebourd
             dt = clock.tick()
@@ -173,8 +177,10 @@ while continuer:
             #####################
 
             # Tester une collision entre le joueur et un ennemi
-            if player.rect.collidelist(list_ennemies) != -1:
+            if player.rect.collidelist(list_ennemies) != -1 and player.health == 0:
                 displayplayer = False
+            elif player.rect.collidelist(list_ennemies) != -1:
+                player.health -= 1
 
             keys = pygame.key.get_pressed()
 
@@ -194,7 +200,8 @@ while continuer:
             texte.update_color(colors["black"])
             # texte.update_font_size(600)
             fenetre.blit(texte.display_message(messages["lose"]), texte.set_position_message(positions["center"]))
-            fenetre.blit(texte.display_message(messages["reolad"]), texte.set_position_message(positions["bottomcenter"]))
+            fenetre.blit(texte.display_message(messages["reolad"]),
+                         texte.set_position_message(positions["bottomcenter"]))
 
     # Rafraichissement
     pygame.display.flip()
